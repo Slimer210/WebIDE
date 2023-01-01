@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import React from 'react';
+import React, {useState} from 'react';
 import '../App.css'
 import { Icon } from '@iconify/react'
 // React Router
@@ -28,30 +28,27 @@ function deleteFile() {
     toast("File Successfully Deleted;-;")
 }
 
-function DeleteConfirmationDialog(file_id) {
+export default function Dashboard() {
+    const [currentFile, setCurrentFile] = useState([]);
+    const DeleteConfirmationDialog = (file_id) => {
+        toast("fml")
+    }
     return (
-        <>
+        <div className='p-8 w-screen h-full font-sans'>
+            <ToastContainer theme="dark" />
+            {/* Start of Delete Confirmation Dialog */}
             <input type="checkbox" id="delete-confirmation-check" class="modal-toggle" />
             <div class="modal">
                 <div class="modal-box">
                     <h3 class="font-bold text-lg">Delete File</h3>
                     <p class="py-4">Are you sure you want to delete this file? <strong>THIS ACTION IS IRREVERSIBLE!</strong></p>
                     <div class="modal-action">
-                        <label for="delete-confirmation-check" class="btn">No</label>
-                        <label for="delete-confirmation-check" class="btn btn-error" onClick={deleteFile}>Yes</label>
+                        <label htmlFor="delete-confirmation-check" class="btn">No</label>
+                        <label htmlFor="delete-confirmation-check" class="btn btn-error" onClick={deleteFile}>Yes</label>
                     </div>
                 </div>
             </div>
-        </>
-    )
-}
-
-export default function Dashboard() {
-    const notify = () => toast("Wow so easy!");
-    return (
-        <div className='p-8 w-screen h-full font-sans'>
-            <ToastContainer theme="dark" />
-            <DeleteConfirmationDialog />
+            {/* End of dialog */}
             <div className='flex flex-row py-4 items-center justify-center'>
                 <h1 className='text-4xl font-bold'>All Files</h1>
                 <a className="btn btn-ghost normal-case text-2xl">
@@ -80,7 +77,7 @@ export default function Dashboard() {
                                             </div>
                                         </li>
                                         <li>
-                                            <label className='text-xl text-error active:bg-red-300' htmlFor="delete-confirmation-check" >
+                                            <label className='text-xl text-error active:bg-red-300' onClick={()=>DeleteConfirmationDialog(item.filename)} htmlFor="delete-confirmation-check" >
                                                 <Icon icon="material-symbols:delete" />
                                                 <a className='text-error' >Delete</a>
                                             </label>
