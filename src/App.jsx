@@ -20,11 +20,15 @@ function Navigation() {
           <Icon icon="material-symbols:terminal-rounded" className='text-xl' />
           WebIDE
         </a>
+        <p className='px-4'>Alpha 0.0.1</p>
+      </div>
+      <div class="badge badge-success gap-2 mx-4">
+        <Icon icon="mdi:tick-circle" />
+        Online
       </div>
       <div className="dropdown dropdown-end dropdown-hover">
         <label tabIndex={0} className="btn m-1 gap-x-2 text-xl">
-          <Icon icon="mdi:file"/>
-          File
+          <Icon icon="mdi:file" />
         </label>
         <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-200 rounded-box w-52">
           {navigationFileMenuItem.map((item) => (
@@ -38,6 +42,9 @@ function Navigation() {
           ))}
         </ul>
       </div>
+      <div className='btn text-xl'>
+        <Icon icon="material-symbols:settings" />
+      </div>
     </div>
   )
 }
@@ -45,11 +52,11 @@ function Navigation() {
 function App() {
   return (
     <BrowserRouter data-theme="night" className="bg-background">
-    <Navigation />
-    <Routes>
-      <Route path="/" element={<Dashboard />} />
-    </Routes>
-  </BrowserRouter>
+      <Navigation />
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+      </Routes>
+    </BrowserRouter>
 
   )
 }
